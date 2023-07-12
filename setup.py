@@ -52,5 +52,5 @@ setup(
     },
     packages=find_packages(where='src'),
     url=homepage,
-    version='0.0.28'
+    version='0.1.0'
 )

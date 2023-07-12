@@ -1,6 +1,6 @@
-.vscode
+.env
+test.py
 
-build
-dist
-src/instapy2.egg-info
-test
+build/
+files/
+src/instapy2.egg-info/
