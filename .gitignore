@@ -1,6 +1,7 @@
 .env
 test.py
 
+.vscode/
 build/
 files/
 src/instapy2.egg-info/
