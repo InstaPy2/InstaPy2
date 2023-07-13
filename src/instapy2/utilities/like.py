@@ -35,9 +35,19 @@ class Like:
         pass
 
     def usernames(self, amount: int = 10, iterable: list[str] = None):
+        total_posts = 0
+        liked_posts = 0
         for index, username in enumerate(iterable=iterable):
             print(f"Fetching posts for username: {username} at index: {index}")
 
             user_id = self.client.user_id_from_username(username=username)
             posts = self.client.user_medias(user_id=user_id, amount=amount)
-            pass
+            total_posts += len(posts)
+            for index, post in enumerate(iterable=posts):
+                print(f"Liking post with id: {post.id} at index: {index}")
+
+                liked = self.client.media_like(media_id=post.id)
+                if liked:
+                    liked_posts += 1
+
+        print(f"Liked {liked_posts} out of {total_posts} available posts")
