@@ -1,5 +1,5 @@
 from instapy2 import InstaPy2
-from instapy2.utilities.like import FetchMode
+from instapy2.types import FetchMode
 
 session = InstaPy2(username="", password="")
 session.login()
