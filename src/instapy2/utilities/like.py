@@ -7,6 +7,15 @@ class Like:
         self.client = client
     
     def hashtags(self, amount: int = 10, iterable: list[str] = None, mode: FetchMode = FetchMode.RECENT):
+        """
+        Likes up to the `amount` of posts per hashtag in `iterable` searched by `mode`
+
+            Parameters
+                amount (int): amount of posts to fetch per iterable
+                iterable (list[str]): list of hashtags to fetch posts from
+                mode (FetchMode): mode to use when fetching posts
+        """
+        
         match mode:
             case FetchMode.RECENT:
                 hashtags_medias = self.client.hashtag_medias_recent
@@ -35,6 +44,14 @@ class Like:
         pass
 
     def usernames(self, amount: int = 10, iterable: list[str] = None):
+        """
+        Likes up to the `amount` of posts per username in `iterable`
+
+            Parameters
+                amount (int): amount of posts to fetch per iterable
+                iterable (list[str]): list of usernames to fetch posts from
+        """
+        
         total_posts = 0
         liked_posts = 0
         for index, username in enumerate(iterable=iterable):
