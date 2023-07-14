@@ -28,6 +28,7 @@ class Authentication:
                 logged_in = self.client.login(username=self.username, password=self.password)
         except:
             print("Error logging in")
+            logged_in = False
 
         print(f"Successfully logged {self.username} in." if logged_in else f"Error logging {self.username} in.")
 
