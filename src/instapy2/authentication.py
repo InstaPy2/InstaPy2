@@ -1,4 +1,4 @@
-from .utilities import Comment, Like
+from .utilities import Comment, Like, Utility
 
 from instagrapi import Client
 
@@ -32,5 +32,7 @@ class Authentication:
 
         print(f"Successfully logged {self.username} in." if logged_in else f"Error logging {self.username} in.")
 
-        self.comment = Comment(client=self.client)
-        self.like = Like(client=self.client)
+        self.utility = Utility(client=self.client)
+
+        self.comment = Comment(utility=self.utility)
+        self.like = Like(utility=self.utility)

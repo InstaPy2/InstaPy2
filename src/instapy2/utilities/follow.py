@@ -1,5 +1,5 @@
 from .utility import Utility
 
-class Comment:
+class Follow:
     def __init__(self, utility: Utility):
         self.utility = utility
