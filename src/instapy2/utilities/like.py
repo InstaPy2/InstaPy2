@@ -25,15 +25,13 @@ class Like:
         liked_posts = 0
         for index, hashtag in enumerate(iterable=iterable):
             print(f"Fetching posts for hashtag: {hashtag} at index: {index}")
-
             
             posts = hashtags_medias(name=hashtag, amount=amount)
             total_posts += len(posts)
             for index, post in enumerate(iterable=posts):
                 print(f"Liking post with id: {post.id} at index: {index}")
 
-                liked = self.utility.client.media_like(media_id=post.id)
-                if liked:
+                if self.utility.client.media_like(media_id=post.id):
                     liked_posts += 1
 
         print(f"Liked {liked_posts} out of {total_posts} available posts")
@@ -67,8 +65,7 @@ class Like:
                 for index, post in enumerate(iterable=posts):
                     print(f"Liking post with id: {post.id} at index: {index}")
 
-                    liked = self.utility.client.media_like(media_id=post.id)
-                    if liked:
+                    if self.utility.client.media_like(media_id=post.id):
                         liked_posts += 1
             else:
                 print("Invalid location pk selected. Please select a valid one")
@@ -92,14 +89,12 @@ class Like:
         for index, username in enumerate(iterable=iterable):
             print(f"Fetching posts for username: {username} at index: {index}")
 
-            user_id = int(self.utility.client.user_id_from_username(username=username))
-            posts = self.utility.client.user_medias(user_id=user_id, amount=amount)
+            posts = self.utility.client.user_medias(user_id=int(self.utility.client.user_id_from_username(username=username)), amount=amount)
             total_posts += len(posts)
             for index, post in enumerate(iterable=posts):
                 print(f"Liking post with id: {post.id} at index: {index}")
 
-                liked = self.utility.client.media_like(media_id=post.id)
-                if liked:
+                if self.utility.client.media_like(media_id=post.id):
                     liked_posts += 1
 
         print(f"Liked {liked_posts} out of {total_posts} available posts")
