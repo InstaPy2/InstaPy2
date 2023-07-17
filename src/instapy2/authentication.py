@@ -1,4 +1,4 @@
-from .utilities import Comment, Like, Utility
+from .utilities import Comment, Follow, Like, Utility
 
 from instagrapi import Client
 
@@ -35,4 +35,5 @@ class Authentication:
         self.utility = Utility(client=self.client)
 
         self.comment = Comment(utility=self.utility)
+        self.follow = Follow(utility=self.utility)
         self.like = Like(utility=self.utility)

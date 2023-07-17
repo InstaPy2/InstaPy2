@@ -4,6 +4,11 @@ from ..types import FetchMode
 class Like:
     def __init__(self, utility: Utility):
         self.utility = utility
+
+        self.min_comments = 10 # only like if posts comments are >=
+        self.max_comments = 1000 # only like if posts comments are <=
+        self.min_followers = 10 # only like if postees follower count is >=
+        self.max_followers = 1000 # only like if postees follower count is <=
     
     def hashtags(self, amount: int = 10, iterable: list[str] = [], mode: FetchMode = FetchMode.RECENT):
         """

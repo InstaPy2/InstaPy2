@@ -4,6 +4,11 @@ class Follow:
     def __init__(self, utility: Utility):
         self.utility = utility
 
+        self.min_comments = 10 # only follow if posts comments are >=
+        self.max_comments = 1000 # only follow if posts comments are <=
+        self.min_followers = 10 # only follow if postees follower count is >=
+        self.max_followers = 1000 # only follow if postees follower count is <=
+
     def usernames(self, iterable: list[str] = []):
         """
         Follows users with the usernames in `iterable`
