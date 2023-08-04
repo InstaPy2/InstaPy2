@@ -5,3 +5,4 @@ test.py
 build/
 files/
 src/instapy2.egg-info/
+*.db
