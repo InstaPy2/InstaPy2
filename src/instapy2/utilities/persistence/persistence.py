@@ -1,9 +1,12 @@
-from sqlite3 import connect, Connection, Cursor
+from ..utility import Utility
+
+from sqlite3 import connect, Connection
 
 class Persistence:
-    def __init__(self, username: str):
-        self.username = username
-        self.db_file_path = f"{self.username}_data.db"
+    def __init__(self, utility: Utility):
+        self.utility = utility
+
+        self.db_file_path = f"{self.utility.client.username or "default"}_data.db"
         self.connection = self._open()
         self.cursor = self.connection.cursor()
         self.create_tables()

@@ -36,4 +36,4 @@ class Authentication:
 
         self.comment = Comment(utility=self.utility)
         self.follow = Follow(utility=self.utility)
-        self.like = Like(utility=self.utility, username=self.username)
+        self.like = Like(utility=self.utility)

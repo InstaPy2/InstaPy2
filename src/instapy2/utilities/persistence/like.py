@@ -1,10 +1,8 @@
-from datetime import datetime
 from .persistence import Persistence
 
-class LikePersistence(Persistence):
-    def __init__(self, username: str):
-        super().__init__(username=username)
+from datetime import datetime
 
+class LikePersistence(Persistence):
     def insert_like(self, post_id: str, timestamp: datetime):
         query = "INSERT INTO likes (postID, timestamp) VALUES (?, ?)"
         params = (post_id, timestamp.isoformat())
