@@ -1,14 +1,13 @@
-from .utility import Utility
-from .persistence.likes import LikePersistence
+from .persistence.like import LikePersistence
 from ..types import FetchMode
+from .utility import Utility
 
 from datetime import datetime
 
 class Like:
-    def __init__(self, utility: Utility, username: str):
+    def __init__(self, utility: Utility):
         self.utility = utility
-        # initialize like persistence
-        self.like_persistence = LikePersistence(username=username)
+        self.like_persistence = LikePersistence(utility=self.utility)
 
         self.min_comments = 10 # only like if posts comments are >=
         self.max_comments = 1000 # only like if posts comments are <=
