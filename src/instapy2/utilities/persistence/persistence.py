@@ -26,7 +26,7 @@ class Persistence:
     def create_tables(self):
         # Create the comments table, which contains columns for a postID and a timestamp
         if not self._table_exists(table="comments"):
-            query = "CREATE TABLE comments (postID TEXT, timestamp TEXT)"
+            query = "CREATE TABLE comments (postID TEXT, timestamp TEXT, text TEXT)"
             self._execute_query(query=query)
         # Create the like table, which contains columns for a postID and a timestamp
         if not self._table_exists(table="likes"):
