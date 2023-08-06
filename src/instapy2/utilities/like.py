@@ -1,9 +1,13 @@
-from .utility import Utility
+from .persistence.like import LikePersistence
 from ..types import FetchMode
+from .utility import Utility
+
+from datetime import datetime
 
 class Like:
     def __init__(self, utility: Utility):
         self.utility = utility
+        self.like_persistence = LikePersistence(utility=self.utility)
 
         self.min_comments = 10 # only like if posts comments are >=
         self.max_comments = 1000 # only like if posts comments are <=
@@ -26,6 +30,9 @@ class Like:
             case FetchMode.TOP:
                 hashtags_medias = self.utility.client.hashtag_medias_top
 
+        # fetch all likes from persistence:
+        likes = self.like_persistence.get_all_likes()
+        print(f"Found {len(likes)} likes in database: {likes}")
         total_posts = 0
         liked_posts = 0
         for index, hashtag in enumerate(iterable=iterable):
@@ -38,6 +45,11 @@ class Like:
 
                 if self.utility.client.media_like(media_id=post.id):
                     liked_posts += 1
+                    print(f"Successfully liked post with id: {post.id}")
+                    try:
+                        self.like_persistence.insert_like(post_id=post.id, timestamp=datetime.now())
+                    except Exception as e:
+                        print(f"Error inserting like into database: {e}")
 
         print(f"Liked {liked_posts} out of {total_posts} available posts")
 
