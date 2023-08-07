@@ -15,3 +15,10 @@ session.like.locations(amount=10, iterable=["Perth, Western Australia"])
 
 # like usernames (no interaction needed) :)
 session.like.usernames(amount=50, iterable=["official_antique"])
+
+
+# openai
+session.utility.openai.set_api_key(api_key="...")
+session.utility.openai.completions.prompts = ["Reply to the following in envy"] # TODO: change to set_prompts(prompts: [])
+
+session.comment.hashtags(amount=10, iterable=["food"], mode=FetchMode.RECENT, use_openai=True) # use_openai is False by default

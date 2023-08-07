@@ -1,9 +1,13 @@
+from .openai import OpenAI
+
 from instagrapi import Client
 from instagrapi.types import Media, User
 
 class Utility:
     def __init__(self, client: Client):
         self.client = client
+
+        self.openai = OpenAI()
 
     def __get_pk(self, query: str) -> int | None:
         places = self.client.fbsearch_places(query=query)

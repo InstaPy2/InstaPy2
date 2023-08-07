@@ -13,7 +13,8 @@ class Comment:
         self.min_followers = 10 # only comment if postees follower count is >=
         self.max_followers = 1000 # only comment if postees follower count is <=
 
-    def hashtags(self, amount: int = 10, iterable: list[str] = [], mode: FetchMode = FetchMode.RECENT):
+    def hashtags(self, amount: int = 10, iterable: list[str] = [], mode: FetchMode = FetchMode.RECENT,
+                 **kwargs):
         """
         Comments on up to the `amount` of posts per hashtag in `iterable`
 
@@ -28,6 +29,9 @@ class Comment:
             case FetchMode.TOP:
                 hashtags_medias = self.utility.client.hashtag_medias_top
 
+        if "use_openai" in kwargs.keys():
+            self.use_openai = kwargs["use_openai"]
+
         total_posts = 0
         commented_posts = 0
         for index, hashtag in enumerate(iterable=iterable):
@@ -38,7 +42,7 @@ class Comment:
             for index, post in enumerate(iterable=posts):
                 print(f"Commenting on post with id: {post.id} at index: {index}")
 
-                if self.utility.client.media_comment(media_id=post.id, text=choice(seq=self.comments)):
+                if self.utility.client.media_comment(media_id=post.id, text=self.utility.openai.completions.completion_for_media(media=post) if self.use_openai else choice(seq=self.comments)):
                     commented_posts += 1
 
         print(f"Commented on {commented_posts} out of {total_posts} available posts")
