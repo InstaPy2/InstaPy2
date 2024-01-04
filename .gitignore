@@ -2,5 +2,5 @@
 
 build
 dist
-src/instapy2.egg-info
+InstaPy2/src/instapy2.egg-info
 test
