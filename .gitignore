@@ -1,6 +1,1 @@
-.vscode
-
-build
-dist
-InstaPy2/src/instapy2.egg-info
-test
+.vscode/
